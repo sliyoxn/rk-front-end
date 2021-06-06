@@ -3,7 +3,7 @@
 		<div class="menu-container">
 			<el-row class="tac">
 				<el-col>
-					<h5 class="menu-text">菜单</h5>
+					<h5 class="menu-text">菜单 {{index}}</h5>
 					<el-menu
 						default-active="1"
 						class="el-menu-vertical-demo"
@@ -35,17 +35,20 @@
 			</el-row>
 		</div>
 		<div class="content-container">
-			<User v-if="index === 1"/>
+			<User v-if="index == 1"/>
+			<Project v-else-if="index == 2"/>
 		</div>
+
 	</div>
 </template>
 
 <script lang="ts">
 import {Component, Vue} from 'vue-property-decorator';
 import User from "@/components/HomeChild/User.vue";
+import Project from "@/components/HomeChild/Project.vue";
 
 @Component({
-	components: {User},
+	components: {Project, User},
 })
 export default class Home extends Vue {
 
@@ -58,7 +61,8 @@ export default class Home extends Vue {
 
 	}
 	private handleChange(e : any) {
-		console.log(e)
+		// console.log(e)
+		this.index = e;
 	}
 }
 </script>

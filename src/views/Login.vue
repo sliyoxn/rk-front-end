@@ -27,7 +27,7 @@ export default class Login extends Vue {
 
 	private loginSystem() {
 
-		const login = (data) =>  {
+		const login = (data : any) =>  {
 			this.$router.push("/");
 		}
 
