@@ -3,7 +3,7 @@
 		<div class="menu-container">
 			<el-row class="tac">
 				<el-col>
-					<h5 class="menu-text">菜单 {{index}}</h5>
+					<h5 class="menu-text">菜单</h5>
 					<el-menu
 						default-active="1"
 						class="el-menu-vertical-demo"
@@ -24,11 +24,19 @@
 						</el-menu-item>
 						<el-menu-item index="3">
 							<i class="el-icon-document"></i>
-							<span slot="title">导航三</span>
+							<span slot="title">服务</span>
 						</el-menu-item>
 						<el-menu-item index="4">
 							<i class="el-icon-setting"></i>
-							<span slot="title">导航四</span>
+							<span slot="title">设置</span>
+						</el-menu-item>
+						<el-menu-item index="5">
+							<i class="el-icon-tickets"></i>
+							<span slot="title">时间表</span>
+						</el-menu-item>
+						<el-menu-item index="6">
+							<i class="el-icon-back"></i>
+							<span slot="title">登出</span>
 						</el-menu-item>
 					</el-menu>
 				</el-col>
@@ -37,6 +45,7 @@
 		<div class="content-container">
 			<User v-if="index == 1"/>
 			<Project v-else-if="index == 2"/>
+			<Service v-else-if="index == 3"/>
 		</div>
 
 	</div>
@@ -46,9 +55,10 @@
 import {Component, Vue} from 'vue-property-decorator';
 import User from "@/components/HomeChild/User.vue";
 import Project from "@/components/HomeChild/Project.vue";
+import Service from "@/components/HomeChild/Service.vue";
 
 @Component({
-	components: {Project, User},
+	components: {Service, Project, User},
 })
 export default class Home extends Vue {
 
@@ -63,6 +73,9 @@ export default class Home extends Vue {
 	private handleChange(e : any) {
 		// console.log(e)
 		this.index = e;
+		if (e == 6) {
+			this.$router.push("/login")
+		}
 	}
 }
 </script>
